@@ -6,19 +6,16 @@ https://tugaspbp1.adaptable.app
         - Mengimport fungsi render dari django.shortcuts
         - Mengimport class Item dari models
         - Mendefinisikan function dengan parameter request
-        - Membuat variabel berisi semua data barang main (CatalogItem.objects.all)
-        - Membuat context (berupa dictionary) yang mempunyai key list_barang dengan value semua data barang katalog yang sudah diambil, key nama dengan nama saya dan key npm dengan NPM saya
         - Membuat fungsi mereturn fungsi render dengan parameter request, main.html dan context (data yang diambil)
 
     2. Membuat routing
         Untuk menampilkan apa yang diminta di tugas2pbpnaz.herokuapp.com/main:
-        - Menambahkan path /main di project_django/urls.py pada array urlpatterns dan include(main.urls) -> routing ke aplikasi main
+        - Menambahkan path /main di main/urls.py pada array urlpatterns dan include(main.urls) -> routing ke aplikasi main
         - Mengimport show_main dari main.views di main/urls.py dan menambahkan path ''  pada array urlpatternn da passing functions show_main
 
     3. Memetakan data yang diambil ke HTML
         - Data yang ada di variabel context pada parameter function render dapat digunakan dalam template HTML. 
         - Di bawah nama, ditambahkan text bold <b> {{name}} </b>, dimana nama yang merupakan key di dictionary context akan mereturn value yang bersesuaian. 
-        - Untuk mengisi data pada tabel, kita akan mengiterasi setiap object di list_barang (yaitu semua objek di Items). Dan memanggil setiap attribute dari item tersebut untuk dimasukkan ke kolom tabel yang bersesuaian.
 
     4. Melakukan deployment ke adaptable agar aplikasi dapat dilihat di internet
          - Membuat aplikasi di adaptable
