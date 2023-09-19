@@ -1,6 +1,53 @@
-<h1>{{ appsName }}</h1>
+{% extends 'base.html' %}
 
-<h5>Name: </h5>
-<b>{{ name }}</b>
-<h5>Class: </h5>
-<b>{{ class }}</b>
+{% block content %}
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 70%;
+            text-align: left;
+        }
+        
+        tr {
+            border-bottom: 1px solid #ddd;
+        }
+    
+        p {
+        line-height: 30%;
+        }
+
+    </style>
+    <h1 style="font-family:Poppins;color:#04ac6c">StockFlow Page</h1>
+
+    <p style="font-family:Poppins">{{name}}</p>
+    <p style="font-family:Poppins">{{class}}</p>
+    
+        
+    <table> 
+        <tr>
+            <th style="font-family:Poppins">Name</th>
+            <th style="font-family:Poppins">Amount</th>
+            <th style="font-family:Poppins">Description</th>
+            <th style="font-family:Poppins">Date Added</th>
+        </tr>
+
+        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+        
+        {% for item in items %}
+            <tr>
+                <td style="font-family:Poppins">{{item.name}}</td>
+                <td style="font-family:Poppins">{{item.amount}}</td>
+                <td style="font-family:Poppins">{{item.description}}</td>
+                <td style="font-family:Poppins">{{item.date_added}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br />
+
+    <a href="{% url 'main:add_product' %}">
+        <button>
+            Add New Item
+        </button>
+    </a>
+
+{% endblock content %}
