@@ -1,3 +1,42 @@
+# Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
+  Django UserCreationForm adalah salah satu bentuk formulir (form) bawaan yang disediakan oleh Django. Form ini digunakan untuk membuat formulir pendaftaran atau registrasi pengguna pada aplikasi web yang dibangun menggunakan Django. UserCreationForm mengambil alih sebagian besar pekerjaan yang diperlukan untuk membuat dan mengelola pengguna dalam sistem Django.
+  
+  Kelebihan
+  - Mudah digunakan
+  - Memiliki validasi otomatis untuk memeriksa input user sesuai dengan persyratan yang diinginkan
+  - Customizable
+  - Dokumentasi yang baik 
+
+  Kekurangan
+  - Kurang fleksibel
+  - Tampilan cukup standar, sehingga untuk mengubah tampilan butuh kode tambahan
+  - Tidak memuat fitur-fitur lanjutan, seperti two-factor authentication, pendaftaran menggunakan email dan lain lain
+#  Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
+    Autentikasi
+    proses verifikasi indentitas pengguna, dalam django autentikasi melibatkan hal hal berikut :
+    - Memvalidasi pengguna berdasarkan kombinasi nama pengguna (username) dan kata sandi (password).
+    - Memeriksa apakah pengguna telah berhasil masuk (authenticated) atau belum.
+    - Menyediakan mekanisme untuk login dan logout pengguna.
+    - Menangani fitur-fitur seperti reset kata sandi.
+
+    Otorisasi
+    Proses yang terjadi setelah autentikasi. Otorisasi berhubungan dengan mengontrol akses pengguna terhadap berbagai bagian dan fitur aplikasi
+    
+    Keduanya penting karena autentikasi dan otorisasi bersama-sama menjaga keamanan aplikasi dengan memastikan bahwa pengguna hanya dapat mengakses dan melakukan tindakan yang sesuai dengan peran dan izin mereka.
+
+#  Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?
+   Cookies adalah potongan kecil data yang disimpan di sisi client. Django, cookies sering digunakan untuk mengelola data sesi pengguna. Sesuatu yang disebut "session cookies" atau "session data" digunakan untuk menyimpan informasi khusus tentang sesi pengguna saat mereka berinteraksi dengan aplikasi web. Ini dapat mencakup informasi seperti:
+
+# Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
+  Penggunaan cookies harus diwaspadai, ada beberapa risiko potensial seperti Cross-Site Scripting, Session Hijacking, Cookie Poisoning, Cookie Theft dan Tracking. 
+
+#  Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+  - Membuat fungsi register, login_user, dan logout_user
+  - Membuat file register.html dan login.html sebagai tampilan register dan login user
+  - Membuat routing ke register.html dan login.html
+  - Merestriksi akses halaman main agar halaman main dapat diakses setelah login
+
+ ---------------------------------------------------------------------------
 # Apa perbedaan antara form POST dan form GET dalam Django?
   - GET kurang aman dibanding POST karena data yang di kirim terlihat di URL, sedangkan POST lebih aman karena parameternya tidak disimpan pada history browser atau web server logs. 
   - POST mengolah data dalam jumlah yang lebih besar dibanding GET
