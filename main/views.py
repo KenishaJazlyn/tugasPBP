@@ -71,6 +71,24 @@ def add_product(request):
    context = {'form': form}
    return render(request, "add_product.html", context)
 
+def increment_quantity(request, product_id):
+   product = Item.objects.get(id=product_id)
+   product.amount += 1
+   product.save()
+   return redirect('main:show_main')
+
+def decrement_quantity(request, product_id):
+   product = Item.objects.get(id=product_id)
+   if product.amount > 0:
+      product.amount -= 1
+      product.save()
+   return redirect('main:show_main')
+
+def delete_item(request, product_id):
+   product = Item.objects.get(id=product_id)
+   product.delete()
+   return redirect('main:show_main')
+
 def show_xml(request):
    data = Item.objects.all()
    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
@@ -86,3 +104,5 @@ def show_xml_by_id(request, id):
 def show_json_by_id(request, id):
     data = Item.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+

@@ -10,7 +10,7 @@
             border-bottom: 1px solid #ddd;
         } p {
         line-height: 30%;
-        }
+        } 
     </style>
 
     
@@ -33,9 +33,34 @@
         {% for item in items %}
             <tr>
                 <td style="font-family:Poppins">{{item.name}}</td>
-                <td style="font-family:Poppins">{{item.amount}}</td>
+                <td style="font-family:Poppins">
+                    <div style="display: inline-block;">
+                        {{item.amount}}
+                    </div>
+                    <div style="display: inline-block;">
+                        <form method="POST" action="{% url 'main:decrement_quantity' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit" style="font-size:10px;font-family:Poppins" >-</button>
+                        </form>
+                    </div>
+                    <div style="display: inline-block;">
+                        <form method="POST" action="{% url 'main:increment_quantity' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit"style="font-size:10px;font-family:Poppins">+</button>
+                        </form>
+                    </div> 
+                </td>
+
                 <td style="font-family:Poppins">{{item.description}}</td>
                 <td style="font-family:Poppins">{{item.date_added}}</td>
+        
+                <td style="column-width: 1;">
+                <form method="POST" action="{% url 'main:delete_item' item.id %}">
+                    {% csrf_token %}
+                    <button type="submit" style="font-family:Poppins">Delete</button>
+                </form>
+                </td>
+            
             </tr>
         {% endfor %}
     </table>
