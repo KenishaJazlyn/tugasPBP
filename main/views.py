@@ -72,16 +72,16 @@ def add_product(request):
    return render(request, "add_product.html", context)
 
 def increment_quantity(request, product_id):
-   product = Item.objects.get(id=product_id)
-   product.amount += 1
-   product.save()
+   item = Item.objects.get(id=product_id)
+   item.amount += 1
+   item.save()
    return redirect('main:show_main')
 
 def decrement_quantity(request, product_id):
-   product = Item.objects.get(id=product_id)
-   if product.amount > 0:
-      product.amount -= 1
-      product.save()
+   item = Item.objects.get(id=product_id)
+   if item.amount > 0:
+      item.amount -= 1
+      item.save()
    return redirect('main:show_main')
 
 def delete_item(request, product_id):
