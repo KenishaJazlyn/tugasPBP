@@ -1,4 +1,3 @@
----------------------------------------------------------------------------
 <details>
 <summary><b> WEEK 05</b> </summary>
 
@@ -135,11 +134,12 @@ JSON by ID
 <img width="668" alt="image" src="https://github.com/KenishaJazlyn/tugasPBP/assets/124899946/439745d9-1e52-46e5-9072-9585244b7244">
 
 </details>    
-----------------------------------------------------------------------------
-# Link aplikasi adaptable
-https://tugaspbp1.adaptable.app
+
 <details>
 <summary><b> WEEK 02</b> </summary>
+Link aplikasi adaptable
+https://tugaspbp1.adaptable.app
+
 # Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
     1. Membuat fungsi pada views.py untuk mengambil model dan mereturn HTML
         - Mengimport fungsi render dari django.shortcuts
