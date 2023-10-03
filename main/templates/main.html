@@ -123,9 +123,11 @@
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-10">
+                                {% if forloop.last %}
+                                    <h5 class="card-title" style="color: red; font-size: 16px; font-family: Poppins; font-weight: 800; line-height: 15px; letter-spacing: 0.5px; display: inline-block;">{{ item.name }}</h5>
+                                {% else %}
                                     <h5 class="card-title" style="color: #262626; font-size: 16px; font-family: Poppins; font-weight: 800; line-height: 15px; letter-spacing: 0.5px; display: inline-block;">{{ item.name }}</h5>
-                                </div>
+                                {% endif %}
                                 <div class="col-2">
                                     <form method="POST" action="{% url 'main:delete_item' item.id %}">
                                         {% csrf_token %}

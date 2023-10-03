@@ -1,3 +1,57 @@
+---------------------------------------------------------------------------
+<details>
+<summary><b> WEEK 05</b> </summary>
+
+# Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+    Elemen selector -> tag HTML sebagai selector diakses dengan nama elemen 
+    Cocok digunakan saat Anda ingin mengaplikasikan gaya atau perilaku yang sama pada semua elemen dengan tipe yang sama suatu halaman. 
+    Contohnya adalah mengubah gaya teks pada semua paragraf (<p>) menjadi warna biru.
+    
+    Id selector -> menambahkan id di tag html, dan diakses dengan #
+    Digunakan ketika Anda ingin memberikan gaya atau perilaku yang unik pada elemen tertentu di halaman. Misalnya, mengubah latar belakang header dengan ID "header."
+
+    Class selector -> menambahkan class di tag html, dan diakses dengan . 
+    Cocok digunakan ketika Anda ingin memberikan gaya atau perilaku yang serupa pada beberapa elemen di halaman yang tidak harus unik. Contohnya adalah memberi elemen dengan class "button" latar belakang berwarna biru.
+
+
+# Jelaskan HTML5 Tag yang kamu ketahui.
+  <a> -> hyperlink
+  <article> -> article
+  <body> -> body of the document
+  <footer> -> footer section
+  <form> -> form for user input
+
+# Jelaskan perbedaan antara margin dan padding.
+    Margin:
+    Margin adalah jarak di sekitar elemen HTML, yang berarti ruang antara elemen tersebut dan elemen-elemen lain di sekitarnya.
+    Margin tidak memiliki latar belakang atau warna, mereka hanya mengontrol jarak antara elemen dan elemen lain di sekitarnya.
+    Margin dapat digunakan untuk mengatur jarak antara elemen-elemen secara horizontal maupun vertikal.
+    Margin dapat digunakan untuk mengendalikan tata letak keseluruhan elemen dan memberikan ruang di sekitarnya.
+    Padding:
+    Padding adalah jarak di sekitar konten elemen HTML, yang berarti ruang antara batas elemen dan kontennya sendiri.
+    Padding dapat memiliki latar belakang atau warna yang berbeda dari elemen itu sendiri, sehingga memungkinkan untuk menciptakan efek visual yang berbeda.
+    Padding digunakan untuk mengendalikan tata letak konten dalam elemen, seperti teks atau gambar di dalam elemen.
+    Padding tidak memengaruhi jarak antara elemen dan elemen lain di sekitarnya; itu hanya memengaruhi jarak antara konten dan batas elemen itu sendiri.
+
+# Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+    - Bootstrap memiliki desain yang lebih berorientasi pada komponen. Tailwind adalah framework yang lebih berorientasi pada utility. Tailwind CSS adalah framework yang berorientasi pada utility. Tailwind memberikan sejumlah besar class CSS yang dapat ditambahkan langsung ke elemen HTML Anda untuk mengendalikan tampilan.
+    - Bootstrap memiliki berbagai komponen dan gaya yang telah ditentukan, yang membuatnya memiliki ukuran yang lebih besar dalam hal berkas CSS.Tailwind lebih ringan dalam ukuran karena Anda hanya menggunakan class yang Anda butuhkan. Ini dapat membantu mengoptimalkan kinerja situs web Anda dengan lebih baik.
+    - 
+
+# Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+    1. Kustomisasi template HTML pada Tugas 4
+      - Halaman login, register, create task
+      - Menambahkan navbar, memberi warna pada page dengan CSS, dan  menggunakan elemen-elemen dari bootstrap
+      - Todolist dengan cards
+      - Menggunakan cards dari bootstrap di dalam for loop yang mengiterasi todolist
+    2. Responsive
+      - Menggunakan media query dan mengatur width untuk layar tertentu
+
+</details>
+
+<details>
+<summary><b> WEEK 04</b> </summary>
+
 # Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
   Django UserCreationForm adalah salah satu bentuk formulir (form) bawaan yang disediakan oleh Django. Form ini digunakan untuk membuat formulir pendaftaran atau registrasi pengguna pada aplikasi web yang dibangun menggunakan Django. UserCreationForm mengambil alih sebagian besar pekerjaan yang diperlukan untuk membuat dan mengelola pengguna dalam sistem Django.
   
@@ -35,8 +89,10 @@
   - Membuat file register.html dan login.html sebagai tampilan register dan login user
   - Membuat routing ke register.html dan login.html
   - Merestriksi akses halaman main agar halaman main dapat diakses setelah login
+</details>
 
- ---------------------------------------------------------------------------
+<details>
+<summary><b> WEEK 03</b> </summary>
 # Apa perbedaan antara form POST dan form GET dalam Django?
   - GET kurang aman dibanding POST karena data yang di kirim terlihat di URL, sedangkan POST lebih aman karena parameternya tidak disimpan pada history browser atau web server logs. 
   - POST mengolah data dalam jumlah yang lebih besar dibanding GET
@@ -78,13 +134,12 @@ JSON by ID
 
 <img width="668" alt="image" src="https://github.com/KenishaJazlyn/tugasPBP/assets/124899946/439745d9-1e52-46e5-9072-9585244b7244">
 
-
-
-     
+</details>    
 ----------------------------------------------------------------------------
 # Link aplikasi adaptable
 https://tugaspbp1.adaptable.app
-
+<details>
+<summary><b> WEEK 02</b> </summary>
 # Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
     1. Membuat fungsi pada views.py untuk mengambil model dan mereturn HTML
         - Mengimport fungsi render dari django.shortcuts
@@ -135,3 +190,4 @@ MVC (Model-View-Controller), MVT (Model-View-Template), dan MVVM (Model-View-Vie
     MVT = MVT biasanya digunakan dalam kerangka kerja (framework) web seperti Django, yang memiliki lapisan Template tambahan untuk mengelola tampilan dinamis. Ini membuat MVT mirip dengan MVC, namun dengan pendekatan berbeda dalam mengatur tampilan.
     MVVM = MVVM dirancang khusus untuk pengembangan aplikasi antarmuka pengguna (UI) yang dinamis, seperti aplikasi berbasis Xamarin atau Angular. Ini memberikan pemisahan yang jelas antara logika tampilan (ViewModel) dan tampilan (View).
    
+</details>
