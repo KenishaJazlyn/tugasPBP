@@ -96,6 +96,16 @@ def add_product_ajax(request):
       return HttpResponse(b"CREATED", status=201)
    return HttpResponseNotFound()
 
+@csrf_exempt
+def delete_ajax(request, product_id):
+   if request.method == 'DELETE':
+      item = Item.objects.get(id=product_id)
+      item.delete()
+
+      return HttpResponse(b"DELETED", status=201)
+   return HttpResponseNotFound()
+
+
 
 def get_product_json(request):
     product_item = Item.objects.all()
