@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect,  HttpResponse
+from django.shortcuts import get_object_or_404, render, redirect
+from django.http import HttpResponseNotFound, HttpResponseRedirect,  HttpResponse
 from main.forms import AddForm
 from django.urls import reverse
 from django.core import serializers
@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 import datetime
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
@@ -77,6 +78,30 @@ def increment_quantity(request, product_id):
    item.save()
    return redirect('main:show_main')
 
+def get_product_json(request):
+    product_item = Product.objects.all()
+    return HttpResponse(serializers.serialize('json', product_item))
+
+@csrf_exempt
+def add_product_ajax(request):
+   if request.method == 'POST':
+      name = request.POST.get("name")
+      amount = request.POST.get("amount")
+      description = request.POST.get("description")
+      user = request.user
+
+      new_product = Item(name=name, amount=amount, description=description, user=user)
+      new_product.save()
+
+      return HttpResponse(b"CREATED", status=201)
+   return HttpResponseNotFound()
+
+
+def get_product_json(request):
+    product_item = Item.objects.all()
+    return HttpResponse(serializers.serialize('json', product_item))
+
+
 def decrement_quantity(request, product_id):
    item = Item.objects.get(id=product_id)
    if item.amount > 0:
@@ -88,6 +113,7 @@ def delete_item(request, product_id):
    product = Item.objects.get(id=product_id)
    product.delete()
    return redirect('main:show_main')
+
 
 def show_xml(request):
    data = Item.objects.all()
