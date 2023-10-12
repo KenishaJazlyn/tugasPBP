@@ -1,3 +1,7 @@
+Nama  : Kenisha Jazlyn Malano
+NPM   : 2206030262
+Kelas : PBP E
+
 <details>
 <summary><b> WEEK 06</b> </summary>
 
