@@ -13,6 +13,7 @@ import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -104,7 +105,23 @@ def delete_ajax(request, product_id):
 
       return HttpResponse(b"DELETED", status=201)
    return HttpResponseNotFound()
-
+@ensure_csrf_cookie
+def increment_ajax(request, product_id):
+   if request.method == 'POST':
+      item = Item.objects.get(id=product_id)
+      item.amount += 1
+      item.save()
+      return HttpResponse(b"INCREMENTED", status=201)
+   return HttpResponseNotFound()
+@ensure_csrf_cookie
+def decrement_ajax(request, product_id):
+   if request.method == 'POST':
+      item = Item.objects.get(id=product_id)
+      if item.amount > 0:
+         item.amount -= 1
+         item.save()
+      return HttpResponse(b"DECREMENTED", status=201)
+   return HttpResponseNotFound()
 
 
 def get_product_json(request):

@@ -5,6 +5,7 @@
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
+    {% csrf_token %}
 </head>
 
 <style>
@@ -193,10 +194,7 @@
                     ` 
                         </div>
                         <div class="col-2">
-                          <a href="delete_item/${item.pk}">
-                              {% csrf_token %}
-                              <button class="btn btn-light" style="display: inline-block;"><i class="fa fa-trash-o"></i></button>
-                          </a>
+                            <button class="btn btn-light"onclick="deleteItem(${item.pk}); return false;" style="display: inline-block;" data-product-id="${item.pk}"><i class="fa fa-trash-o"></i></button>
                         </div>
                       </div>
                       <div class="row">
@@ -231,10 +229,25 @@
       return false
     }
     function deleteItem(productId) {
-            fetch(`delete_ajax/${productId}`, {
-                method: "DELETE",
-            }).then(refreshProducts)
-            return false
+      fetch(`delete_ajax/${productId}`, {
+          method: "DELETE",
+      }).then(refreshProducts)
+      return false
+    }
+    function incrementItem(productId){
+      fetch(`increment_ajax/${productId}/`, {
+          method: "POST",
+         
+      }).then(refreshProducts)
+      return false
+    }
+    
+    function decrementItem(productId){
+
+      fetch(`decrement_ajax/${productId}/`, {
+          method: "POST" ,
+      }).then(refreshProducts)
+      return false
     }
 
     
