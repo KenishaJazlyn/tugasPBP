@@ -4,6 +4,7 @@
 <head> 
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
 </head>
 
 <style>
@@ -51,6 +52,8 @@
     }
     .h5 {
       font-family: 'Lato';
+      font-size:  25px;
+      text-align: center;
     }
     body {
       background-repeat: no-repeat;
@@ -114,67 +117,120 @@
           </div>
       </div>
     </nav>
-            <br>
-            {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
-            <div class="row row-cols-md-4">
-            {% for item in items %}
-                <div class = "col m-4">
-                    <div class = "cards">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <div class="row">
-                                {% if forloop.last %}
-                                    <h5 class="card-title" style="color: red; font-size: 16px; font-family: Poppins; font-weight: 800; line-height: 15px; letter-spacing: 0.5px; display: inline-block;">{{ item.name }}</h5>
-                                {% else %}
-                                    <h5 class="card-title" style="color: #262626; font-size: 16px; font-family: Poppins; font-weight: 800; line-height: 15px; letter-spacing: 0.5px; display: inline-block;">{{ item.name }}</h5>
-                                {% endif %}
-                                <div class="col-2">
-                                    <form method="POST" action="{% url 'main:delete_item' item.id %}">
-                                        {% csrf_token %}
-                                        <button class="btn btn-light" style="display: inline-block;"><i class="fa fa-trash-o"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="row">
-                            <h6 class= "card-subtitle"style="color: #555555; font-size: 12px; font-family: Poppins; font-weight: 800; line-height: 20px;letter-spacing: 0.7px;">{{item.description}}</h6>
-                            </div>
-                             
-                            <div class="row">
-                                <div class="col-10">
-                                    <div style="display: inline-block;">
-                                        <form method="POST" action="{% url 'main:decrement_quantity' item.id %}">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn btn-light" style="font-size: 8px; display: inline-block; vertical-align: middle;">-</>
-                                        </form>
-                                    </div>
-                                
 
-                                    <div style="display: inline-block;"> {{item.amount}} </div>
-                                    
-                                    <div style="display: inline-block;">
-                                        <form method="POST" action="{% url 'main:increment_quantity' item.id %}">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn btn-light" style="font-size: 8px; display: inline-block; vertical-align: middle;">+</button>
-                                        </form>
-                                    </div>    
-                                </div>
-                            </div>
-                            
+    <br>
+    <div id="item_card"></div>
+      <div class="row row-cols-md-4">
+        <div class = "col m-4">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product</button>
+        </div>
+      </div>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <form id="form" onsubmit="return false;">
+                      {% csrf_token %}
+                      <div class="mb-3">
+                          <label for="name" class="col-form-label">Name:</label>
+                          <input type="text" class="form-control" id="name" name="name"></input>
+                      </div>
+                      <div class="mb-3">
+                          <label for="amount" class="col-form-label">Amount:</label>
+                          <input type="number" class="form-control" id="amount" name="amount"></input>
+                      </div>
+                      <div class="mb-3">
+                          <label for="description" class="col-form-label">Description:</label>
+                          <textarea class="form-control" id="description" name="description"></textarea>
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+              </div>
+          </div>
+      </div>
+
+    <br>
+    
+    <div style="width: 5px; height: 5px"></div>
+  
+
+<div style="align-self: stretch; height: 622px; background: white"></div>
+    </div>
+    <h5 style="font-family: Poppins; font-size: 15px; text-align: center; ">Sesi terakhir login: {{ last_login }}</h5>
+
+
+
+
+  <script>
+    async function getItems() {
+        return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+    }
+    async function refreshProducts() {
+      document.getElementById("item_card").innerHTML = ""
+      const items = await getItems()
+      let htmlString =  `<div class="row row-cols-md-4">`
+      items.forEach((item, index) => {
+          const isLastItem = index === items.length - 1;
+          htmlString += `\n
+          <div class = "col m-4">
+                <div class = "cards">
+                  <div class= card style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="row">
+                          <div class="col-10">`
+          if (isLastItem) 
+            htmlString += `<h5 class="card-title" style="color: red;font-size: 16px; font-family: Poppins; font-weight: 800; line-height: 15px; letter-spacing: 0.5px; display: inline-block;">${ item.fields.name }</h5>`
+          else
+            htmlString += `<h5 class="card-title" style="font-size: 16px; font-family: Poppins; font-weight: 800; line-height: 15px; letter-spacing: 0.5px; display: inline-block;">${ item.fields.name }</h5>`                
+          htmlString += 
+                    ` 
                         </div>
-                    </div>
+                        <div class="col-2">
+                          <a href="delete_item/${item.pk}">
+                              {% csrf_token %}
+                              <button class="btn btn-light" style="display: inline-block;"><i class="fa fa-trash-o"></i></button>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <h6 class= "card-subtitle"style="color: #555555; font-size: 12px; font-family: Poppins; font-weight: 800; line-height: 20px;letter-spacing: 0.7px;">${item.fields.description}</h6>
+                      </div>
+                      <div class="row">
+                        <a href="decrement_quantity/${item.pk}">
+                          <button class="btn btn-light" style="font-size: 8px; display: inline-block; vertical-align: middle;">-</button> 
+                        </a>
+                        <div style="display: inline-block;"> ${item.fields.amount} </div>
+                        <a href="increment_quantity/${item.pk}">
+                          <button  class="btn btn-light" style="font-size: 8px; display: inline-block; vertical-align: middle;">+</button> 
+                        </a>
+                      </div>
                     </div>
                 </div>
-                
-            {% endfor %}
-            </div>
-            <br>
+                </div>
+            </div>` 
+    })
+      
+      document.getElementById("item_card").innerHTML = htmlString
+    }
+    refreshProducts()
 
-            <div style="width: 5px; height: 5px"></div>
-          </div>
-        </div>
-        <div style="align-self: stretch; height: 622px; background: white"></div>
-      </div>
-    </div>
-  </div>
+    function addProduct() {
+      fetch("{% url 'main:add_product_ajax' %}", {
+          method: "POST",
+          body: new FormData(document.querySelector('#form'))
+      }).then(refreshProducts)
 
+      document.getElementById("form").reset()
+      return false
+    }
+    
+    document.getElementById("button_add").onclick = addProduct
+  </script>
 {% endblock content %}
