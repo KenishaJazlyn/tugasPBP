@@ -19,7 +19,6 @@
     - Menambahkan fungsi get_product_json dan add_product_ajax pada views.py
     - Melakukan routing untuk fungsi tersebut di urls.py
     - Menambahkan fungsi-fungsi JavaScript seperti getProducts() untuk mengambil semua data server, refreshProduct() untuk 
-    - Menampilkan data menggunakan AJAX, dan addProduct() untuk menambahkan data dengan AJAX
     - Membuat modal yang digunakan untuk menambahkan item menggunakan AJAX
     - Menambahkan tombol Add Item
 </details>
