@@ -125,7 +125,7 @@ def decrement_ajax(request, product_id):
 
 
 def get_product_json(request):
-    product_item = Item.objects.all()
+    product_item = Item.objects.filter(user = request.user)
     return HttpResponse(serializers.serialize('json', product_item))
 
 
