@@ -123,11 +123,9 @@ def decrement_ajax(request, product_id):
       return HttpResponse(b"DECREMENTED", status=201)
    return HttpResponseNotFound()
 
-
 def get_product_json(request):
     product_item = Item.objects.filter(user = request.user)
     return HttpResponse(serializers.serialize('json', product_item))
-
 
 def decrement_quantity(request, product_id):
    item = Item.objects.get(id=product_id)
@@ -140,7 +138,6 @@ def delete_item(request, product_id):
    product = Item.objects.get(id=product_id)
    product.delete()
    return redirect('main:show_main')
-
 
 def show_xml(request):
    data = Item.objects.all()
