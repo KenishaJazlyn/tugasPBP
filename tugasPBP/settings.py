@@ -149,3 +149,4 @@ CORS_ALLOW_HEADERS = [
     'x-requested-with',
     'access-control-allow-origin',
 ]
+CSRF_TRUSTED_ORIGINS = ['http://kenisha-jazlyn-tugas.pbp.cs.ui.ac.id/']
